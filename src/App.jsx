@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import SignUpForm from "./components/SignUpForm";
-import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/Auth/SignUpForm";
+import SignInForm from "./components/Auth/SignInForm";
 import TogglePanel from "./components/TogglePanel";
 
 const App = () => {
