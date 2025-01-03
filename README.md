@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Login Page in React 
 ![PáginaWebLogin](./LoginPage.png)
@@ -14,6 +15,7 @@
 - ### Implement the backend for account and logging into the site 
 - ### Add acessibility to the site and responsiveness
 - ### And the possibility of being able to log in or create accounts through social buttons  such as Google for example.
+
 
 
 # React + Vite
