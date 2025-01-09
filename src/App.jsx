@@ -6,6 +6,8 @@ import SignInForm from "./components/Auth/SignInForm";
 import TogglePanel from "./components/TogglePanel";
 
 const App = () => {
+  
+
   const [isActive, setIsActive] = useState(false);
 
   const handleRegisterClick = () => setIsActive(true);

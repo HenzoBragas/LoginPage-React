@@ -1,8 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SignUpForm = () => (
+const SignUpForm = () => {
+
+  const url = "http://localhost:3000/users";
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const handleData = (e) => {
+    const {name, value} = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleChangeSubmit = async(e) => {
+    e.preventDefault();
+
+    const newUser = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password      
+    }
+
+    const res = await fetch(url, {
+      method : "POST",
+      headers : {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newUser),
+    });
+
+    if (res.ok) {
+      console.log("Dados inseridos com sucesso");
+      alert("Usuário criado com sucesso");
+      setFormData(""); // Limpa o formulário após o envio
+    } else {
+      console.error("Erro ao inserir dados");
+    }
+  };
+
+  return(
   <div className="form-container sign-up">
-    <form>
+    <form onSubmit={handleChangeSubmit}>
       <h1 className="CreateAccount">Create Account</h1>
       <div className="social-icons">
         <a href="#" className="icon">
@@ -19,12 +63,31 @@ const SignUpForm = () => (
         </a>
       </div>
       <span>or use your email for registration</span>
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button type="button">Sign Up</button>
+      <input 
+      type="text" 
+      placeholder="Name"
+      value={formData.name || ''}
+      name="name"
+      onChange={handleData}
+      />
+      <input 
+      type="email" 
+      placeholder="Email"
+      value={formData.email || ''}
+      name="email"
+      onChange={handleData}
+       />
+      <input 
+      type="password" 
+      placeholder="Password"
+      value={formData.password || ''}
+      name="password" 
+      onChange={handleData}
+      />
+      <button type="submit">Sign Up</button>
     </form>
   </div>
-);
+  );
+};
 
 export default SignUpForm;
