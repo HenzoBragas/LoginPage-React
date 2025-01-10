@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SignInForm = () => {
 
@@ -26,16 +29,29 @@ const SignInForm = () => {
     const user = userData.find(user => 
       user.email === formAuth.email && user.password === formAuth.password
     );
-    if(user) {
-      console.log("Login Sucesso");
-      alert("Logado com sucesso");
+    if(!user) {
+      toast.success("Login realizado com sucesso!", {
+        position: 'top-center',
+        autoClose: 3000,
+        limit: 2,
+        hideProgressBar: false,
+        draggable: true,
+        closeButton: false,
+        pauseOnHover: false,
+      });
       setLoginError(false);
     
     } else {
-      console.error("Credenciais inválidas");
-      alert("Credencias inválidas");
+      toast.error("Dados inválidos!", {
+        position: 'top-center',
+        limit: 2,
+        hideProgressBar: false,
+        autoClose: 3000,
+        draggable: true,
+        closeButton: false,
+        pauseOnHover: false,
+      });
       setLoginError(true);
-    
     }
     setFormAuth("");
   };
@@ -49,7 +65,10 @@ const SignInForm = () => {
   }, []);
 
   return(
+    <>
+    < ToastContainer />
   <div className="form-container sign-in">
+    
     <form onSubmit={handleSubmit}>
       <h1 className="SignIn">Sign In</h1>
       <div className="social-icons">
@@ -83,7 +102,10 @@ const SignInForm = () => {
       <a href="#">Forget Your Password?</a>
       <button type="submit">Sign In</button>
     </form>
+
+    
   </div>
+  </>
   )
 };
 

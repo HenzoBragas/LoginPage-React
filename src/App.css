@@ -250,3 +250,10 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+.Toastify__toast-container--top-center {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
