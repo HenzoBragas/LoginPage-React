@@ -33,7 +33,6 @@ const SignInForm = () => {
       toast.success("Login realizado com sucesso!", {
         position: 'top-center',
         autoClose: 3000,
-        limit: 2,
         hideProgressBar: false,
         draggable: true,
         closeButton: false,
@@ -44,7 +43,6 @@ const SignInForm = () => {
     } else {
       toast.error("Dados inválidos!", {
         position: 'top-center',
-        limit: 2,
         hideProgressBar: false,
         autoClose: 3000,
         draggable: true,

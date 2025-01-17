@@ -43,7 +43,6 @@ const SignUpForm = () => {
         hideProgressBar: false,
         draggable: true,
         closeButton: false,
-        limit: 2,
         pauseOnHover: false,
       });
       setFormData(""); // Limpa o formulário após o envio
@@ -54,7 +53,6 @@ const SignUpForm = () => {
         autoClose: 3000,
         draggable: true,
         closeButton: false,
-        limit: 2,
         pauseOnHover: false,
       });
       setFormData("");
