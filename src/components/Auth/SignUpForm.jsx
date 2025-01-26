@@ -67,19 +67,19 @@ const SignUpForm = () => {
 
         <form onSubmit={handleChangeSubmit}>
           <h1 className="CreateAccount">Create Account</h1>
-          <div className="social-icons">
-            <a href="#" className="icon">
+          <div className="social-socialAuths">
+            <button href="#" className="socialAuth">
               <i className="fa-brands fa-google-plus-g"></i>
-            </a>
-            <a href="#" className="icon">
+            </button>
+            <button href="#" className="socialAuth">
               <i className="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#" className="icon">
+            </button>
+            <button href="#" className="socialAuth">
               <i className="fa-brands fa-github"></i>
-            </a>
-            <a href="#" className="icon">
+            </button>
+            <button href="#" className="socialAuth">
               <i className="fa-brands fa-linkedin-in"></i>
-            </a>
+            </button>
           </div>
           <span>or use your email for registration</span>
           <input
@@ -103,7 +103,7 @@ const SignUpForm = () => {
             name="password"
             onChange={handleData}
           />
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="btn-submit">Sign Up</button>
         </form>
       </div>
     </>

@@ -10,7 +10,7 @@
 ### https://loginpage-react.vercel.app/
 
 # Projects Notes and Improvements 🪛⚙️
-- ### Implement the backend for account and logging into the site 
+- ### ~~Implement the backend for account and logging into the site~~
 - ### Add acessibility to the site and responsiveness
 - ### And the possibility of being able to log in or create accounts through social buttons  such as Google for example.
 
