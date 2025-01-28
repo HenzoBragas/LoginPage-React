@@ -1,5 +1,22 @@
 {
   "users": [
-
+    {
+      "id": "3cba",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "ebe4",
+      "name": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "0aa9",
+      "name": "",
+      "email": "",
+      "password": ""
+    }
   ]
 }

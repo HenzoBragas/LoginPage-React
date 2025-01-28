@@ -1,71 +1,21 @@
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useCreateAccount } from "../../hooks/Create/useCreateAccount";
 
 const SignUpForm = () => {
 
-  const url = "http://localhost:3000/users";
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
-
-  const handleData = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleChangeSubmit = async (e) => {
-    e.preventDefault();
-
-    const newUser = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password
-    }
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newUser),
-    });
-
-    if (!res.ok) {
-      toast.success("Conta criada com sucesso!", {
-        autoClose: 3000,
-        hideProgressBar: false,
-        draggable: true,
-        closeButton: false,
-        pauseOnHover: false,
-      });
-      setFormData(""); // Limpa o formulário após o envio
-    } else {
-      toast.error("Dados inválidos!", {
-        position: 'top-center',
-        hideProgressBar: false,
-        autoClose: 3000,
-        draggable: true,
-        closeButton: false,
-        pauseOnHover: false,
-      });
-      setFormData("");
-    }
-  };
+  const {
+    formData,
+    handleData,
+    handleSubmit,
+  } = useCreateAccount("http://localhost:3000/users");
 
   return (
     <>
       <ToastContainer />
-
       <div className="form-container sign-up">
-
-        <form onSubmit={handleChangeSubmit}>
+        <form onSubmit={handleSubmit}>
           <h1 className="CreateAccount">Create Account</h1>
           <div className="social-socialAuths">
             <button href="#" className="socialAuth">
