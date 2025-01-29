@@ -24,16 +24,34 @@ const SignInForm = () => {
         <form onSubmit={handleSubmit}>
           <h1 className="SignIn">Sign In</h1>
           <div className="social-icons">
-            <button href="#" className="socialAuth" onClick={googleLogin}>
+            <button
+              className="socialAuth"
+              onClick={(e) => {
+                e.preventDefault();
+                googleLogin();
+              }}
+            >
               <i className="fa-brands fa-google-plus-g"></i>
             </button>
-            <button href="#" className="socialAuth">
+            <button
+              className="socialAuth"
+      
+            >
               <i className="fa-brands fa-facebook-f"></i>
             </button>
-            <button href="#" className="socialAuth">
+            <button
+              className="socialAuth"
+              onClick={(e) => {
+                e.preventDefault();
+                loginWithGithub();
+              }}
+            >
               <i className="fa-brands fa-github"></i>
             </button>
-            <button href="#" className="socialAuth">
+            <button
+              className="socialAuth"
+
+            >
               <i className="fa-brands fa-linkedin-in"></i>
             </button>
           </div>
@@ -54,10 +72,10 @@ const SignInForm = () => {
           />
           <a href="#">Forget Your Password?</a>
           <button type="submit" className="btn-submit">Sign In</button>
-        </form>
+        </form >
 
 
-      </div>
+      </div >
     </>
   )
 };

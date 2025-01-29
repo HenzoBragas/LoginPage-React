@@ -2,17 +2,13 @@ import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCreateAccount } from '../../hooks/Create/useCreateAccount';
-import { useGoogleAuth } from '../../hooks/Create/useGoogleAccount';
+import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
+import useGoogleAccount from '../../hooks/Create/useGoogleAccount';
 
 const SignUpForm = () => {
   const { formData, handleData, handleSubmit } = useCreateAccount('http://localhost:3000/users');
-  const { googleLogin, initializeGoogleLogin, isLoading } = useGoogleAuth('http://localhost:3000/users');
-
-  // Inicializa o Google login após o componente ser montado
-  useEffect(() => {
-    const clientId = '886509980158-ifmc46l439dsusm2pq27du84dvnpkjsc.apps.googleusercontent.com';
-    initializeGoogleLogin(clientId);
-  }, [initializeGoogleLogin]);
+  const { user, loading, loginWithGoogle, logout } = useGoogleAccount(); // Usando o hook
+  const { userGit, loadgin, loginWithGithub, logoutGit } = useGithubAuth();
 
   return (
     <>
@@ -25,17 +21,25 @@ const SignUpForm = () => {
               className="socialAuth"
               onClick={(e) => {
                 e.preventDefault();
-                googleLogin();
+                loginWithGoogle(); // Chama a função do hook
               }}
-              disabled={isLoading}
+              disabled={loading} // Usa o estado de loading retornado do hook
             >
-              {isLoading ? 'Loading...' : <i className="fa-brands fa-google-plus-g"></i>}
+              {loading ? 'Loading...' : <i className="fa-brands fa-google-plus-g"></i>}
             </button>
+
+            
             <button className="socialAuth" onClick={(e) => e.preventDefault()}>
               <i className="fa-brands fa-facebook-f"></i>
             </button>
-            <button className="socialAuth" onClick={(e) => e.preventDefault()}>
-              <i className="fa-brands fa-github"></i>
+            <button className="socialAuth"
+              onClick={(e) => {
+                e.preventDefault();
+                loginWithGithub();
+              }}
+              disabled={loading}
+            >
+              {loading ? "Loading..." : <i className="fa-brands fa-github"></i>}
             </button>
             <button className="socialAuth" onClick={(e) => e.preventDefault()}>
               <i className="fa-brands fa-linkedin-in"></i>
