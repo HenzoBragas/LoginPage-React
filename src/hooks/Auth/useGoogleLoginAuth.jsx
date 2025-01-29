@@ -3,11 +3,10 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { toast } from "react-toastify";
 
 const useGoogleLoginAuth = () => {
-    
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [acessToken, setAcessToken] = useState(null);
+    const [accessToken, setAccessToken] = useState(null);
 
-    //Function Auth Google
+    // Função de autenticação com o Google
     const googleLogin = useGoogleLogin({
         onSuccess: (response) => {
             toast.success("Login realizado com sucesso!", {
@@ -19,12 +18,12 @@ const useGoogleLoginAuth = () => {
                 pauseOnHover: false,
             });
             setIsAuthenticated(true);
-            setAcessToken(response.access_token);
-            console.log("Token de acesso de login Google", response.acess_token);
+            setAccessToken(response.access_token); // Corrigido para 'access_token'
+            console.log("Token de acesso de login Google", response.access_token); // Corrigido para 'access_token'
         },
         onError: () => {
-            console.error("Erro durante o login com Google:", error);
-            toast.error("Dados inválidos!", {
+            console.error("Erro durante o login com Google.");
+            toast.error("Dados inválidos ou erro na autenticação!", {
                 position: 'top-center',
                 hideProgressBar: false,
                 autoClose: 3000,
@@ -35,9 +34,10 @@ const useGoogleLoginAuth = () => {
         },
     });
 
-    const logout= () => {
+    // Função de logout
+    const logout = () => {
         setIsAuthenticated(false);
-        setAcessToken(null);
+        setAccessToken(null);
         toast.info("Você saiu com sucesso", {
             position: "top-center",
             autoClose: 3000,
@@ -48,10 +48,10 @@ const useGoogleLoginAuth = () => {
         });
         console.log("Usuário desconectado");
     }
-  
+
     return {
         isAuthenticated,
-        acessToken,
+        accessToken, // Corrigido para 'accessToken'
         googleLogin,
         logout,
     };

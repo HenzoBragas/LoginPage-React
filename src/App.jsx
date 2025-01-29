@@ -16,8 +16,7 @@ const App = () => {
 
   return (
     <>
-      <GoogleOAuthProvider clientId="886509980158-t91pom3qb1nfaru1h2ckg6h9ccapafsk.apps.googleusercontent.com
-">
+      <GoogleOAuthProvider clientId="886509980158-ifmc46l439dsusm2pq27du84dvnpkjsc.apps.googleusercontent.com">
         <div className={`container ${isActive ? "active" : ""}`} id="container">
           <TogglePanel
             isActive={isActive}

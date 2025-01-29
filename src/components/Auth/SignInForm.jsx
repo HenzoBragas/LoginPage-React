@@ -1,19 +1,20 @@
 import { ToastContainer } from "react-toastify";
-import useGoogleLoginAuth from '../../Auth/useGoogleLoginAuth'
+import useGoogleLoginAuth from '../../hooks/Auth/useGoogleLoginAuth'
 import 'react-toastify/dist/ReactToastify.css';
+import { useLoginAuth } from "../../hooks/Auth/useLoginAuth";
 
 
 const SignInForm = () => {
   const {
-    formAuth,
     isAuthenticated,
     googleLogin,
-    handleAuth,
-    handleSubmit,
   } = useGoogleLoginAuth("http://localhost:3000/users");
 
-  
-
+  const {
+    formAuth,
+    handleAuth,
+    handleSubmit,
+  } = useLoginAuth("http://localhost:3000/users");
 
   return (
     <>
@@ -42,12 +43,14 @@ const SignInForm = () => {
             placeholder="Email"
             name="email"
             onChange={handleAuth}
+            required
           />
           <input
             type="password"
             name="current-password"
             placeholder="Password"
             onChange={handleAuth}
+            required
           />
           <a href="#">Forget Your Password?</a>
           <button type="submit" className="btn-submit">Sign In</button>

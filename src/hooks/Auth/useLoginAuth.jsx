@@ -62,6 +62,6 @@ export const useLoginAuth = (apiUrl) => {
     return {
         formAuth,
         handleAuth,
-        handleSubmit
+        handleSubmit,
     }
 }
