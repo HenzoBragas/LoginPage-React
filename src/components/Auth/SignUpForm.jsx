@@ -4,11 +4,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useCreateAccount } from '../../hooks/Create/useCreateAccount';
 import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
 import useGoogleAccount from '../../hooks/Create/useGoogleAccount';
+import { useMicrosoftAuth } from '../../hooks/Auth/useMicrosoftAuth';
 
 const SignUpForm = () => {
   const { formData, handleData, handleSubmit } = useCreateAccount('http://localhost:3000/users');
   const { user, loading, loginWithGoogle, logout } = useGoogleAccount(); // Usando o hook
-  const { userGit, loadgin, loginWithGithub, logoutGit } = useGithubAuth();
+  const { userGit, loadingGit, loginWithGithub, logoutGit } = useGithubAuth();
+  const { userMic, loadingMic, loginWithMicrosoft, logoutMic} = useMicrosoftAuth();
 
   return (
     <>
@@ -25,24 +27,32 @@ const SignUpForm = () => {
               }}
               disabled={loading} // Usa o estado de loading retornado do hook
             >
-              {loading ? 'Loading...' : <i className="fa-brands fa-google-plus-g"></i>}
+              {loading ? '...' : <i className="fa-brands fa-google-plus-g"></i>}
             </button>
 
             
             <button className="socialAuth" onClick={(e) => e.preventDefault()}>
               <i className="fa-brands fa-facebook-f"></i>
             </button>
+
             <button className="socialAuth"
               onClick={(e) => {
                 e.preventDefault();
                 loginWithGithub();
               }}
-              disabled={loading}
+              disabled={loadingGit}
             >
-              {loading ? "Loading..." : <i className="fa-brands fa-github"></i>}
+              {loadingGit ? "..." : <i className="fa-brands fa-github"></i>}
             </button>
-            <button className="socialAuth" onClick={(e) => e.preventDefault()}>
-              <i className="fa-brands fa-linkedin-in"></i>
+
+            <button className="socialAuth" 
+            onClick={(e) => {
+              e.preventDefault();
+              loginWithMicrosoft();
+            }}
+            disabled={loadingMic}
+            >
+              {loadingMic ? "..." : <i className="fa-brands fa-microsoft"></i>}
             </button>
           </div>
           <span>or use your email for registration</span>

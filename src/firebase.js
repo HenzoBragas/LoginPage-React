@@ -1,6 +1,6 @@
 // Importando as funções necessárias do Firebase SDK
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, OAuthProvider} from "firebase/auth";
 
 // Sua configuração do Firebase
 const firebaseConfig = {
@@ -18,5 +18,8 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Obter a instância de autenticação
 const auth = getAuth(firebaseApp);
 
+//Microsoft
+const microsoftProvider = new OAuthProvider('microsoft.com');
+
 // Exportando corretamente as funções e provedores
-export { firebaseApp, auth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, getAuth };
+export { firebaseApp, auth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, getAuth, microsoftProvider};
