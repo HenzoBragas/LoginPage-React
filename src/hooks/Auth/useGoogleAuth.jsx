@@ -4,7 +4,7 @@ import { firebaseApp, getAuth } from "../../firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from 'react-toastify';
 
-const useGoogleAccount = () => {
+export const useGoogleAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -50,4 +50,4 @@ const useGoogleAccount = () => {
   };
 };
 
-export default useGoogleAccount;  // Certifique-se de exportar corretamente o hook
+  

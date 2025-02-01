@@ -54,5 +54,3 @@ export const useGithubAuth = () => {
         logout,
     }
 }
-
-export default useGithubAuth;

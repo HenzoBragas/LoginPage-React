@@ -1,26 +1,25 @@
-import { ToastContainer } from "react-toastify";
-import useGoogleLoginAuth from '../../hooks/Auth/useGoogleLoginAuth'
+import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import { useGoogleAuth } from '../../hooks/Auth/useGoogleAuth';
 import { useLoginAuth } from "../../hooks/Auth/useLoginAuth";
-
+import { useMicrosoftAuth } from "../../hooks/Auth/useMicrosoftAuth";
+import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
+import ChangePasswordPopup from '../Panels/ChangePasswordPoup';
 
 const SignInForm = () => {
-  const {
-    isAuthenticated,
-    googleLogin,
-  } = useGoogleLoginAuth("http://localhost:3000/users");
-
-  const {
-    formAuth,
-    handleAuth,
-    handleSubmit,
-  } = useLoginAuth("http://localhost:3000/users");
+  const { user, loading, loginWithGoogle } = useGoogleAuth();
+  const { formAuth, handleAuth, handleSubmit } = useLoginAuth("http://localhost:3000/users");
+  const { userGit, loadingGit, loginWithGithub } = useGithubAuth();
+  const { userMic, loadingMic, loginWithMicrosoft } = useMicrosoftAuth();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
-    <>
-      < ToastContainer />
-      <div className="form-container sign-in">
 
+    <>
+      <ChangePasswordPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}/>
+      <ToastContainer />
+      <div className="form-container sign-in">
         <form onSubmit={handleSubmit}>
           <h1 className="SignIn">Sign In</h1>
           <div className="social-icons">
@@ -28,14 +27,15 @@ const SignInForm = () => {
               className="socialAuth"
               onClick={(e) => {
                 e.preventDefault();
-                googleLogin();
+                loginWithGoogle();
               }}
+              disabled={loading}
             >
-              <i className="fa-brands fa-google-plus-g"></i>
+              {loading ? '...' : <i className="fa-brands fa-google-plus-g"></i>}
             </button>
             <button
               className="socialAuth"
-      
+            // Add functionality for Facebook login if needed
             >
               <i className="fa-brands fa-facebook-f"></i>
             </button>
@@ -45,14 +45,19 @@ const SignInForm = () => {
                 e.preventDefault();
                 loginWithGithub();
               }}
+              disabled={loadingGit}
             >
-              <i className="fa-brands fa-github"></i>
+              {loadingGit ? "..." : <i className="fa-brands fa-github"></i>}
             </button>
             <button
               className="socialAuth"
-
+              onClick={(e) => {
+                e.preventDefault();
+                loginWithMicrosoft();
+              }}
+              disabled={loadingMic}
             >
-              <i className="fa-brands fa-linkedin-in"></i>
+              {loadingMic ? "..." : <i className="fa-brands fa-microsoft"></i>}
             </button>
           </div>
           <span>or use your email password</span>
@@ -70,14 +75,22 @@ const SignInForm = () => {
             onChange={handleAuth}
             required
           />
-          <a href="#">Forget Your Password?</a>
+          <div className={isPopupOpen ? "disabled-screen" : ""}></div>
+          <button
+            className="forgot"
+            onClick={() => setIsPopupOpen(true)}
+            type="button"
+          >
+
+            Forgot Your Password?
+          </button>
+          
+            
           <button type="submit" className="btn-submit">Sign In</button>
-        </form >
-
-
-      </div >
+        </form>
+      </div>
     </>
-  )
+  );
 };
 
 export default SignInForm;
