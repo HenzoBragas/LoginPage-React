@@ -10,5 +10,6 @@ export const usePasswordView = () => {
     return {
         isPasswordVisible,
         toggleVisibility,
-    };
+
+    }
 };

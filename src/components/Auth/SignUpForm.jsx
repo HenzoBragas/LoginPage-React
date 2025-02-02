@@ -4,13 +4,16 @@ import { useCreateAccount } from '../../hooks/Auth/useCreateAccount';
 import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
 import { useMicrosoftAuth } from '../../hooks/Auth/useMicrosoftAuth';
 import { useGoogleAuth } from '../../hooks/Auth/useGoogleAuth';
+import { useFacebookAuth } from '../../hooks/Auth/useFacebookAuth'
+import { usePasswordView } from '../../hooks/ViewPassword/usePasswordView';
 
 const SignUpForm = () => {
   const { formData, handleData, handleSubmit } = useCreateAccount('http://localhost:3000/users');
   const { user, loading, loginWithGoogle, logout } = useGoogleAuth();
   const { userGit, loadingGit, loginWithGithub, logoutGit } = useGithubAuth();
   const { userMic, loadingMic, loginWithMicrosoft, logoutMic } = useMicrosoftAuth();
-
+  const { userFace, loadingFace, loginWithFacebook, logoutFace } = useFacebookAuth();
+  const { isPasswordVisible, toggleVisibility } = usePasswordView();
   return (
     <>
       <ToastContainer />
@@ -30,8 +33,16 @@ const SignUpForm = () => {
             </button>
 
 
-            <button className="socialAuth" onClick={(e) => e.preventDefault()}>
-              <i className="fa-brands fa-facebook-f"></i>
+            <button
+              className="socialAuth"
+              onClick={(e) => {
+                e.preventDefault();
+                loginWithFacebook();
+              }}
+              disabled={loadingFace}
+            >
+
+              {loadingFace ? "..." : <i className="fa-brands fa-facebook-f"></i>}
             </button>
 
             <button className="socialAuth"
@@ -72,17 +83,26 @@ const SignUpForm = () => {
             onChange={handleData}
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            value={formData.password || ''}
-            name="password"
-            onChange={handleData}
-            required
-          />
+          <div className="inputPassword">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="Password"
+              value={formData.password || ''}
+              name="password"
+              onChange={handleData}
+              required
+            />
+            <button onClick={(e) => { e.preventDefault(); toggleVisibility(); }}>
+              {isPasswordVisible ? (
+                <i class="fa-solid fa-eye-slash"></i>
+              ) : (
+                <i class="fa-solid fa-eye"></i>
+              )}
+            </button>
+          </div>
           <button type="submit" className="btn-submit">Sign Up</button>
-        </form>
-      </div>
+        </form >
+      </div >
     </>
   );
 };
