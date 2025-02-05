@@ -2,11 +2,9 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 export const useLoginAuth = () => {
     const [formAuth, setFormAuth] = useState({ email: "", password: "" });
     const [loadingLogin, setLoadingLogin] = useState(false);
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormAuth({ ...formAuth, [e.target.name]: e.target.value });
