@@ -21,9 +21,16 @@ export const useGoogleAuth = () => {
       const auth = getAuth(firebaseApp);
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
-      toast.success(`Bem-vindo, ${result.user.displayName}!`);
+      toast.success(`Bem-vindo, ${result.user.displayName}!`, {
+        position: "top-center",
+        autoClose: 3000,
+      }
+      );
     } catch (error) {
-      toast.error("Erro ao fazer login com Google. Tente novamente.");
+      toast.error("Erro ao fazer login com Google. Tente novamente.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
     } finally {
       setLoading(false);
     }

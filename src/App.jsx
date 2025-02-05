@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./App.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import SignUpForm from "./components/Auth/SignUpForm";
 import SignInForm from "./components/Auth/SignInForm";
 import TogglePanel from "./components/Pages/TogglePanel";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import "./App.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const App = () => {
 

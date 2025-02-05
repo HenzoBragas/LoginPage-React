@@ -1,5 +1,4 @@
 import { useState } from "react";
-import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import { useGoogleAuth } from '../../hooks/Auth/useGoogleAuth';
 import { useLoginAuth } from "../../hooks/Auth/useLoginAuth";
@@ -8,15 +7,16 @@ import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
 import { useFacebookAuth } from '../../hooks/Auth/useFacebookAuth';
 import { usePasswordView } from "../../hooks/ViewPassword/usePasswordView";
 import ChangePasswordPopup from '../Pages/ChangePasswordPoup';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignInForm = () => {
-  const { user, loading, loginWithGoogle } = useGoogleAuth();
-  const { formAuth, handleAuth, handleSubmit } = useLoginAuth("http://localhost:3000/users");
-  const { userGit, loadingGit, loginWithGithub } = useGithubAuth();
-  const { userMic, loadingMic, loginWithMicrosoft } = useMicrosoftAuth();
-  const { userFace, loadingFace, loginWithFacebook } = useFacebookAuth();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { loading, loginWithGoogle } = useGoogleAuth();
+  const { loadingLogin, formAuth, handleChange, handleSubmit } = useLoginAuth();
+  const { loadingGit, loginWithGithub } = useGithubAuth();
+  const { loadingMic, loginWithMicrosoft } = useMicrosoftAuth();
+  const { loadingFace, loginWithFacebook } = useFacebookAuth();
   const { isPasswordVisible, toggleVisibility } = usePasswordView();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
 
@@ -42,7 +42,7 @@ const SignInForm = () => {
               onClick={(e) => {
                 e.preventDefault();
                 loginWithFacebook();
-                
+
               }}
               disabled={loadingFace}
             >
@@ -74,18 +74,20 @@ const SignInForm = () => {
             type="email"
             placeholder="Email"
             name="email"
-            onChange={handleAuth}
+            onChange={handleChange}
+            value={formAuth.email || ""}
             required
           />
           <div className="inputPassword">
             <input
               type={isPasswordVisible ? "text" : "password"}
-              name="current-password"
+              name="password"
               placeholder="Password"
-              onChange={handleAuth}
+              onChange={handleChange}
+              value={formAuth.password || ""}
               required
             />
-            <button  type="button" onClick={(e) => { e.preventDefault(); toggleVisibility(); }}>
+            <button type="button" onClick={(e) => { e.preventDefault(); toggleVisibility(); }}>
               {isPasswordVisible ? (
                 <i className="fa-solid fa-eye-slash"></i>
               ) : (
@@ -101,7 +103,7 @@ const SignInForm = () => {
           >
             Forgot Your Password?
           </button>
-          <button type="submit" className="btn-submit">Sign In</button>
+          {loadingLogin ? ".... " : <button type="submit" className="btn-submit">Sign In</button>}
         </form>
       </div>
     </>

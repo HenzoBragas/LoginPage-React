@@ -1,6 +1,6 @@
 // Importando as funções necessárias do Firebase SDK
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, OAuthProvider} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, OAuthProvider, signInWithEmailAndPassword} from "firebase/auth";
 
 // Sua configuração do Firebase
 const firebaseConfig = {
