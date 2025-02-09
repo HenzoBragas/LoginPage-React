@@ -1,27 +1,26 @@
 import { useState } from 'react'
-import { auth,  microsoftProvider, signInWithPopup } from '../../firebase';
+import { auth, microsoftProvider, signInWithPopup } from '../../firebase';
 import { toast } from 'react-toastify';
 
 export const useMicrosoftAuth = () => {
-    const [userMic, setUserMic] = useState(null);
     const [loadingMic, setLoadingMic] = useState(false);
 
     const loginWithMicrosoft = async () => {
         setLoadingMic(true);
 
         try {
-            const result = await signInWithPopup(auth, microsoftProvider);
-            const user = result.user;
-            setUserMic(user);
-            toast.success(`Bem vindo, ${user.displayName}`, {
+            await signInWithPopup(auth, microsoftProvider);
+            toast.success(`Login sucessful`, {
                 position: "top-center",
                 autoClose: 3000,
+                closeButton: true,
             });
         } catch (error) {
-            console.error("Erro ao fazer o login com Microsoft!");
-            toast.error(`Erro ao fazer o login com a Microsoft!`, {
+            console.error(error);
+            toast.error(`Error logging in with Microsoft!`, {
                 position: "top-center",
                 autoClose: 3000,
+                closeButton: true,
             });
         } finally {
             setLoadingMic(false);
@@ -31,14 +30,13 @@ export const useMicrosoftAuth = () => {
     const logoutMic = async () => {
         try {
             await auth.signOut();
-            setUserMic(null);
-            toast.info("Você saiu com sucesso", {
+            toast.info("You have successfully exited", {
                 position: "top-center",
                 autoClose: 3000,
             });
         } catch (error) {
             console.log(error);
-            toast.error("Erro ao fazer logout. Tente novamente.", {
+            toast.error("Error logging out. Please try again.", {
                 position: "top-center",
                 autoClose: 3000,
             });
@@ -46,7 +44,6 @@ export const useMicrosoftAuth = () => {
     };
 
     return {
-        userMic,
         loadingMic,
         loginWithMicrosoft,
         logoutMic,

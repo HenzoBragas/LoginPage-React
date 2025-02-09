@@ -130,7 +130,7 @@ body {
   display: flex;
   width: 100%;
 }
-.inputPassword button{
+.inputPassword button {
   border: none;
   position: relative;
   right: 40px;
@@ -328,7 +328,6 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   width: 600px;
   height: 250px;
-
 }
 .container-pop {
   width: 480px;
@@ -353,7 +352,7 @@ body {
   width: 400px;
 }
 
-.inputView button{
+.inputView button {
   border: none;
   position: relative;
   left: 175px;
@@ -362,6 +361,13 @@ body {
   background: none;
 }
 
-.btn-next{
+.btn-next {
   width: 180px;
 }
+
+
+
+
+
+
+

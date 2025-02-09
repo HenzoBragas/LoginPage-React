@@ -106,8 +106,8 @@ const SignInForm = () => {
           {loadingLogin ? ".... " : <button type="submit" className="btn-submit">Sign In</button>}
         </form>
       </div>
-    </>
-  );
+    </>  
+    );
 };
 
 export default SignInForm;

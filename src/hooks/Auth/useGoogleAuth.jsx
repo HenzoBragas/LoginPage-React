@@ -1,33 +1,27 @@
-// useGoogleAccount.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { firebaseApp, getAuth } from "../../firebase";
-import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const useGoogleAuth = () => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const auth = getAuth(firebaseApp);
-    const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
-    return () => unsubscribe();
-  }, []);
+  const provider = new GoogleAuthProvider();
 
   const loginWithGoogle = async () => {
     setLoading(true);
     try {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth(firebaseApp);
-      const result = await signInWithPopup(auth, provider);
-      setUser(result.user);
-      toast.success(`Bem-vindo, ${result.user.displayName}!`, {
+      await signInWithPopup(getAuth(firebaseApp), provider); 
+      toast.success('Login successful', {
         position: "top-center",
         autoClose: 3000,
-      }
-      );
+      });
+      navigate("/home"); 
     } catch (error) {
-      toast.error("Erro ao fazer login com Google. Tente novamente.", {
+      console.error(error);
+      toast.error('Error logging in with Google', {
         position: "top-center",
         autoClose: 3000,
       });
@@ -39,22 +33,32 @@ export const useGoogleAuth = () => {
   const logout = async () => {
     setLoading(true);
     try {
+
       await signOut(getAuth(firebaseApp));
-      setUser(null);
-      toast.info("Você saiu com sucesso.");
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      toast.info('You have successfully logged out', {
+        position: "top-center",
+        autoClose: 3000,
+      });
+
+      navigate("/");
     } catch (error) {
-      toast.error("Erro ao fazer logout. Tente novamente.");
+      console.error(error);
+      toast.error('Error logging out. Please try again.', {
+        position: "top-center",
+        autoClose: 3000,
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    user,
     loading,
     loginWithGoogle,
     logout,
   };
 };
-
-  

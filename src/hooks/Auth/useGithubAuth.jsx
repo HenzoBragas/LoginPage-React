@@ -1,27 +1,31 @@
 import { useState } from "react";
 import { auth, GithubAuthProvider, signInWithPopup } from "../../firebase";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export const useGithubAuth = () => {
 
     const [userGit, setUserGit] = useState(null);
     const [loadingGit, setLoadingGit] = useState(false);
+    const navigate = useNavigate();
 
     const loginWithGithub = async () => {
         setLoadingGit(true);
         const provider = new GithubAuthProvider();
 
         try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
+           await signInWithPopup(auth, provider);
             setUserGit(user);
-            toast.success(`Bem vindo, ${user.displayName}!`, {
+            toast.success(`Login sucessful `, {
                 position: "top-center",
                 autoClose: 3000,
             });
+
+            navigate("/home");
+
         } catch (error) {
             console.log(error);
-            toast.error("Erro ao fazer o login com GitHub!", {
+            toast.error("Error logging in with GitHub!", {
                 position: "top-center",
                 autoClose: 3000,
             });
@@ -34,13 +38,13 @@ export const useGithubAuth = () => {
         try {
             await auth.signOut();
             setUserGit(null);
-            toast.info("Você saiu com sucesso", {
+            toast.info("You have successfully exited", {
                 position: "top-center",
                 autoClose: 3000,
             });
         } catch (error) {
             console.log(error);
-            toast.error("Erro ao fazer logout. Tente novamente.", {
+            toast.error("Error logging out. Please try again.", {
                 position: "top-center",
                 autoClose: 3000,
             });
