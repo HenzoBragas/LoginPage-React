@@ -15,6 +15,21 @@ body {
   height: 100vh;
   position: relative;
 }
+input {
+  background-color: #eee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+}
+ input::placeholder {
+  color: hsla(0, 0%, 45%, 0.63);
+  font-size: 15px;
+  font-weight: 600;
+}
 
 .container {
   background-color: #fff;
@@ -111,21 +126,7 @@ body {
   height: 100%;
 }
 
-.container input {
-  background-color: #eee;
-  border: none;
-  margin: 8px 0;
-  padding: 10px 15px;
-  font-size: 13px;
-  border-radius: 8px;
-  width: 100%;
-  outline: none;
-}
-.container input::placeholder {
-  color: hsla(0, 0%, 45%, 0.63);
-  font-size: 15px;
-  font-weight: 600;
-}
+
 .inputPassword {
   display: flex;
   width: 100%;
@@ -348,24 +349,27 @@ body {
   text-align: center;
 }
 
-.inputSocial input {
+.inputSocial input{
   width: 400px;
 }
 
-.inputView button {
+.inputSocial button {
   border: none;
   position: relative;
-  left: 175px;
-  bottom: 35px;
+  right: 30px;
   width: 5px;
   background: none;
 }
 
-.btn-next {
-  width: 180px;
+.home{
+  font-size: 100px;
+  position: relative;
+  bottom: 100px;
 }
 
-
+.btn-home {
+  margin-left: 50px;
+}
 
 
 

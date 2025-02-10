@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import SignUpForm from "./components/Auth/SignUpForm";
 import SignInForm from "./components/Auth/SignInForm";
 import TogglePanel from "./components/Pages/TogglePanel";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Outlet, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import "./App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 

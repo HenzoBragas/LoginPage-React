@@ -20,7 +20,7 @@ const ChangePasswordPopup = ({ isOpen, onClose }) => {
 
 
         if (!formData.email) {
-            toast.error("Por favor insira seu email!", {
+            toast.error("Please enter your email", {
                 position: "top-center",
                 autoClose: 3000,
             })
@@ -31,11 +31,11 @@ const ChangePasswordPopup = ({ isOpen, onClose }) => {
             await resetPassword(formData.email);
             setTimeout(() => {
                 onClose();
-            }, 3000)
+            }, 2000)
         } catch (error) {
             console.error(error);
-            }
         }
+    }
 
     return (
         <div className="overlay">

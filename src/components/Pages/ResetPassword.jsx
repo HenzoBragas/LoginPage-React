@@ -25,6 +25,7 @@ function ResetPassword() {
         }
 
         const oobCode = searchParams.get("oobCode");
+        console.log("Código oobCode:", oobCode); 
         if (!oobCode) {
             toast.error("Código inválido!", {
                 position: "top-center",
@@ -34,6 +35,7 @@ function ResetPassword() {
         }
 
         try {
+            console.log("Chamando confirmResetPassword...");
             await confirmResetPassword(oobCode, password);
             toast.success("Senha redefinida com sucesso!", {
                 position: "top-center",
@@ -44,6 +46,7 @@ function ResetPassword() {
                 navigate("/");
             }, 3000);
         } catch (error) {
+            console.error("Erro ao redefinir senha:", error);
             toast.error("Erro ao redefinir a senha. Tente novamente!", {
                 position: "top-center",
                 autoClose: 3000,
@@ -52,7 +55,7 @@ function ResetPassword() {
     };
 
     return (
-        <div className="overlay">
+        <div>
             <div className="modal">
                 <div className="container-pop">
                     <div className="container-title">
@@ -60,7 +63,7 @@ function ResetPassword() {
                     </div>
                     <div className="form-pop">
                         <form onSubmit={handleResetPassword}>
-                            <div className="inputView">
+                            <div className="inputSocial">
                                 <input
                                     type={isPasswordVisible ? "text" : "password"}
                                     name="password"

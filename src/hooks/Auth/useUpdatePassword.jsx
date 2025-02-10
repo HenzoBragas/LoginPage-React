@@ -1,16 +1,13 @@
-import { useState } from "react";
+
 import { getAuth, sendPasswordResetEmail, confirmPasswordReset } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const useUpdatePassword = () => {
-  const [loading, setLoading] = useState(false);
   const auth = getAuth();
   const navigate = useNavigate();
 
-  // Função para enviar o e-mail de redefinição de senha
   const resetPassword = async (email) => {
-    setLoading(true);
     try {
       const actionCodeSettings = {
         url: "http://localhost:5173/reset-password",
@@ -27,32 +24,30 @@ export const useUpdatePassword = () => {
         position: "top-center",
         autoClose: 3000,
       });
-    } finally {
-      setLoading(false);
     }
   };
 
-  // Função para confirmar a redefinição de senha
   const confirmResetPassword = async (oobCode, newPassword) => {
     try {
       await confirmPasswordReset(auth, oobCode, newPassword);
-      toast.success("Senha redefinida com sucesso!", {
+
+      toast.success("Password reset successfully", {
         position: "top-center",
         autoClose: 3000,
       });
 
-      // Redireciona o usuário após 2 segundos
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      navigate("/");
+
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao redefinir a senha. Código inválido ou expirado.", {
+      toast.error("Error resetting password. Invalid or expired code.", {
         position: "top-center",
         autoClose: 3000,
       });
     }
+
   };
 
-  return { resetPassword, confirmResetPassword, loading };
+  return { resetPassword, confirmResetPassword };
 };
