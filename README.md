@@ -3,6 +3,10 @@
 
 ## Descrição
 Este projeto foi desenvolvido com base no estilo minimalista e suave inspirado pelo vídeo **ASMR Programming - Animated Login Page - No Talking** do canal **ASMR Prog**. O objetivo foi implementar métodos de login, como: Google, GitHub, Facebook, Microsoft e método padrão (email e senha). A aplicação foi desenvolvida com **React Js**.
+### Status do Projeto
+**9Fase final de desenvolvimento** <br>
+- [ ] Correção de alguns bugs da aplicação Toast <br>
+- [x] Documentação 
 
 ## Funcionalidades
 A página foi desenvolvida como uma aplicação **SPA (Single Page Application)**.  
