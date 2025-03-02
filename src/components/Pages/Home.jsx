@@ -14,6 +14,7 @@ function Success() {
                 autoClose: 3000,
             });
             setTimeout(() => {
+                
                 navigate("/");
             }, 4000)
         } catch (error) {

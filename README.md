@@ -1,86 +1,72 @@
-# Login Page in React 
+# Login Page in React
 ![PáginaWebLogin](./LoginPage.png)
 
- Descrição
-Este projeto foi desenvolvido com base no estilo minimalista e suave inspirado pelo vídeo ASMR Programming - Animated Login Page - No Talking do canal ASMR Prog. O objetivo é criar uma experiência de login agradável e tranquila para o usuário, com animações suaves e transições elegantes.
+## Descrição
+Este projeto foi desenvolvido com base no estilo minimalista e suave inspirado pelo vídeo **ASMR Programming - Animated Login Page - No Talking** do canal **ASMR Prog**. O objetivo foi implementar métodos de login, como: Google, GitHub, Facebook, Microsoft e método padrão (email e senha). A aplicação foi desenvolvida com **React Js**.
 
-A página é projetada para proporcionar uma sensação de fluidez e calma, utilizando animações e interações que seguem o princípio do design "menos é mais".
+## Funcionalidades
+A página foi desenvolvida como uma aplicação **SPA (Single Page Application)**.  
+As principais funcionalidades incluem os métodos de login com a utilização da API do **Google Firebase**. A página é composta por duas seções: **Login** e **Cadastro**.  
+Ao pressionar o botão **SIGN UP**, a seção de cadastro muda de forma animada, utilizando **keyframes** do CSS.  
+A aplicação apresenta a funcionalidade de **recuperar senha** com validação de email. A recuperação é feita através do envio de um link para a troca da senha, e após a troca, a aplicação retorna à página principal.  
+Antes da conclusão de qualquer método de login ou cadastro, o usuário é informado, por meio de um **toast**, se a ação foi um sucesso ou não. Para isso, utilizamos a biblioteca **react-toastify**.
 
-Funcionalidades
-Formulário de Login: Permite que o usuário acesse sua conta com as credenciais fornecidas.
-Formulário de Cadastro: Solicita os seguintes dados do usuário:
-Nome
-Email
-Senha
-Animações e Transições
-A experiência do usuário é aprimorada com animações fluidas e transições suaves, criando uma sensação de calma ao interagir com os elementos da interface.
+## Integração com a API Firebase (Autenticação)
+Este projeto utiliza a **API Firebase da Google**, que permite trabalhar sem um banco de dados local e sem a necessidade de criar funções para garantir a segurança dos dados inseridos.  
 
-Ao pressionar o botão SIGN UP, a seção de cadastro muda de forma animada, utilizando keyframes do CSS.
-As animações foram inspiradas no estilo ASMR, com foco em interações suaves e agradáveis.
-Design e Estilo
-O design é minimalista e focado na experiência do usuário. As cores e fontes foram escolhidas para criar uma interface tranquila e acolhedora, alinhada ao conceito de ASMR. As animações e transições são feitas de forma a não interromper o fluxo da navegação, proporcionando uma sensação contínua de movimento.
+### Estrutura de arquivos
+Todos os métodos de login foram desenvolvidos em arquivos separados e implementados com **custom hooks** no componente principal.
 
-Integração com a API do Google (Autenticação)
-Este projeto implementa a autenticação com a API de Login do Google (Google Sign-In) para permitir que os usuários façam login em suas contas Google diretamente no seu aplicativo.
+### Atenção ⚠️⚠️
+**Todos os dados são excluídos quando o usuário sai da aplicação para garantir a privacidade dos dados.**
 
-Passos para a Integração:
-Criar um Projeto no Console do Google Cloud:
+### Passos para a Integração:
+#### Criar um Projeto no Console do Google Cloud:
+1. Acesse o **Google Cloud Console**.
+2. Crie um novo projeto ou selecione um projeto existente.
+3. Ative a **Google Identity Platform** e habilite a **API de autenticação** (por exemplo, Google).
+4. Crie as **credenciais OAuth 2.0** no painel de credenciais. Defina o tipo de aplicativo como **Web** e registre o domínio autorizado.
 
-Acesse Google Cloud Console.
-Crie um novo projeto ou selecione um projeto existente.
-Ative a Google Identity Platform e habilite a API de autenticação do Google.
-Crie as credenciais OAuth 2.0 no painel de credenciais. Defina o tipo de aplicativo como Web e registre o domínio autorizado.
-Instalar a Biblioteca de Autenticação do Google:
+#### Configurar o arquivo Firebase SDK:
+```js
+// Importando as funções necessárias do Firebase SDK
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, OAuthProvider} from "firebase/auth";
 
-Para utilizar a autenticação com Google, você pode usar a biblioteca react-google-login:
-bash
-Copiar
-Editar
-npm install react-google-login
-Configuração no React:
-
-Importe o componente GoogleLogin em seu arquivo de login:
-jsx
-Copiar
-Editar
-```
-import { GoogleLogin } from 'react-google-login';
-Configure o botão de login com as credenciais obtidas no Google Console:
-jsx
-Copiar
-Editar
-const responseGoogle = (response) => {
-  console.log(response);
-  // Aqui você pode salvar o token e realizar a autenticação do usuário no seu backend
+// Sua configuração do Firebase
+const firebaseConfig = {
+  apiKey: "***************",
+  authDomain: "**************",
+  projectId: "loginpage-*********",
+  storageBucket: "****************",
+  messagingSenderId: "**************",
+  appId: "******************"
 };
 
+// Inicializando o Firebase com a configuração
+const firebaseApp = initializeApp(firebaseConfig);
 
-<GoogleLogin
-  clientId="YOUR_GOOGLE_CLIENT_ID"
-  buttonText="Login com Google"
-  onSuccess={responseGoogle}
-  onFailure={responseGoogle}
-  cookiePolicy={'single_host_origin'}
-/>
+// Obter a instância de autenticação
+const auth = getAuth(firebaseApp);
+// Microsoft
+const microsoftProvider = new OAuthProvider('microsoft.com');
+
+export { firebaseApp, auth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, getAuth, microsoftProvider };
 ```
-Gerenciamento de Sessão:
-
+## Gerenciamento de Sessão:
+### Logout
 Após a autenticação, o usuário pode acessar os dados da conta do Google. Para garantir a privacidade, ao sair do site, todos os dados de sessão são apagados. Isso pode ser feito removendo o token de autenticação e sessão de cookies.
-Exemplo para destruir a sessão no logout:
-jsx
-Copiar
-Editar
+```js
 const logout = () => {
   // Limpar as credenciais
   localStorage.removeItem('userToken');
   sessionStorage.removeItem('userToken');
 };
-Trocar a Senha
-Caso o projeto implemente a funcionalidade de troca de senha, será necessário usar o Firebase Authentication ou alguma outra API de autenticação para gerenciar a recuperação e mudança de senha.
-Para utilizar o Firebase Authentication com email e senha, basta configurar o Firebase no seu projeto, habilitar o método de autenticação por Email/Password e criar funções para troca de senha:
-javascript
-Copiar
-Editar
+```
+### Troca de  Senha
+O projeto implemente a funcionalidade de troca de senha, com método de envio de email para efetuar a troca da senha. A página da troca da senha totalmente personalizada com as cores da aplicação. Ao efetuar a troca da senha e validação a página recarrega para sessão principal. So é possivel trocar a senha pelo método email e senha.
+
+```js
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const auth = getAuth();
@@ -88,49 +74,31 @@ const resetPassword = (email) => {
   sendPasswordResetEmail(auth, email)
     .then(() => {
       // Avisar o usuário que um email foi enviado
-      alert('Email de recuperação enviado!');
+      toast.success('Email de recuperação enviado!', {
+        position: "top-center",
+        autoClose: 3000,
+        closeButton: true,
+      });
     })
     .catch((error) => {
-      alert(error.message);
+      toast.error("Erro ao enviar email de recuperação!", {
+        position: "top-center",
+        autoClose: 3000,
+        closeButton: true,
+      })
     });
 };
+```
+### Acesse o Projeto Online 🚀🚀
+**Você pode acessar a versão online do projeto através deste link**
+### 👉 [Página de Login em React](https://loginpage-react.vercel.app/)
 
-Tecnologias Utilizadas
-React para a construção da interface
-React Hooks (useState) para controle de estados
-Google Identity Platform para login com Google
-Firebase Authentication (opcional) para gerenciar usuários e autenticação
-Como Rodar o Projeto
-Clone o repositório:
-
-bash
-Copiar
-Editar
-git clone https://github.com/usuario/repository-name.git
-Instale as dependências:
-
-bash
-Copiar
-Editar
-npm install
-Execute o projeto:
-
-bash
-Copiar
-Editar
-npm start
-O projeto estará disponível em http://localhost:3000.
-
-Acesse o Projeto Online 🚀🚀
-Você pode acessar a versão online do projeto através deste link: Página de Login em React.
+## Tecnologias Utilizadas
+Para construção da aplicação utilizei os seguintes frameworks e biliotecas e APIs <br> 
+- #### React JS 
+- #### Toastify
+- #### Firebase API
+- #### Fortawesome
 
 
 
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

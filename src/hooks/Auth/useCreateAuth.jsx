@@ -28,7 +28,8 @@ export const useCreateAuth = () => {
                 });
 
             setFormAuth({ name: "", email: "", password: "" });
-            navigate("/home");
+
+            98
         } catch (error) {
             toast.error("Error creating account!", {
                 position: "top-center",
