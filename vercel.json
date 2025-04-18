@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [
+        { "src": "package.jsonn", "use": "@vercel/static-build", "config": {"distDir": "build"} }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ]
+}
