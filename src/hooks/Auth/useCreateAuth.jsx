@@ -24,7 +24,7 @@ export const useCreateAuth = () => {
             toast.success("Account created successfully!",
                 {
                     position: "top-center",
-                    autoClose: 3000
+                    autoClose: 2000
                 });
 
             setFormAuth({ name: "", email: "", password: "" });

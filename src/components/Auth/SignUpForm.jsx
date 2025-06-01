@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useCreateAuth } from '../../hooks/Auth/useCreateAuth';
@@ -7,6 +8,7 @@ import { useGoogleAuth } from '../../hooks/Auth/useGoogleAuth';
 import { useFacebookAuth } from '../../hooks/Auth/useFacebookAuth';
 import { usePasswordView } from '../../hooks/ViewPassword/usePasswordView';
 
+
 const SignUpForm = () => {
   const { formAuth, handleChange, handleSubmit, loadingCreate } = useCreateAuth();
   const { loading, loginWithGoogle } = useGoogleAuth();
@@ -15,6 +17,7 @@ const SignUpForm = () => {
   const { loadingFace, loginWithFacebook } = useFacebookAuth();
   const { isPasswordVisible, toggleVisibility } = usePasswordView();
 
+  
   return (
     <>
       <ToastContainer />

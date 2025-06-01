@@ -20,15 +20,15 @@ export const useFacebookAuth = () => {
             await signInWithPopup(auth, provider);
             toast.success(`Login sucessful `, {
                 position: "top-center",
-                autoClose: 3000,
-                closeButton: true,
+                autoClose: 2000,
+                closeButton: true
             });
             navigate("/home");
         } catch (error) {
             toast.error("Error loggin in with Facebook", {
                 position: "top-center",
                 autoClose: 3000,
-                closeButton: true,
+                closeButton: true
             });
             
         }finally{

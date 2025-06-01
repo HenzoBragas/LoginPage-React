@@ -12,15 +12,15 @@ export const useMicrosoftAuth = () => {
             await signInWithPopup(auth, microsoftProvider);
             toast.success(`Login sucessful`, {
                 position: "top-center",
-                autoClose: 3000,
-                closeButton: true,
+                autoClose: 2000,
+                closeButton: true
             });
         } catch (error) {
             console.error(error);
             toast.error(`Error logging in with Microsoft!`, {
                 position: "top-center",
-                autoClose: 3000,
-                closeButton: true,
+                autoClose: 2000,
+                closeButton: true
             });
         } finally {
             setLoadingMic(false);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useGoogleAuth } from '../../hooks/Auth/useGoogleAuth';
 import { useLoginAuth } from "../../hooks/Auth/useLoginAuth";
@@ -7,9 +7,11 @@ import { useGithubAuth } from '../../hooks/Auth/useGithubAuth';
 import { useFacebookAuth } from '../../hooks/Auth/useFacebookAuth';
 import { usePasswordView } from "../../hooks/ViewPassword/usePasswordView";
 import ChangePasswordPopup from '../Pages/ChangePasswordPoup';
+import { useLocation } from "react-router-dom"; 
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignInForm = () => {
+  const location = useLocation();
   const { loading, loginWithGoogle } = useGoogleAuth();
   const { loadingLogin, formAuth, handleChange, handleSubmit } = useLoginAuth();
   const { loadingGit, loginWithGithub } = useGithubAuth();
@@ -18,10 +20,15 @@ const SignInForm = () => {
   const { isPasswordVisible, toggleVisibility } = usePasswordView();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  
+   useEffect(() => {
+    const timeout = setTimeout(() => {
+      toast.dismiss();
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname]);
 
   return (
-
     <>
       <ChangePasswordPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
       <ToastContainer />
@@ -108,8 +115,8 @@ const SignInForm = () => {
           {loadingLogin ? ".... " : <button type="submit" className="btn-submit">Sign In</button>}
         </form>
       </div>
-    </>  
-    );
+    </>
+  );
 };
 
 export default SignInForm;

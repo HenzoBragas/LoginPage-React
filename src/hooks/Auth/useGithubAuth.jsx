@@ -19,6 +19,7 @@ export const useGithubAuth = () => {
             toast.success(`Login sucessful `, {
                 position: "top-center",
                 autoClose: 3000,
+                closeButton: true
             });
 
             navigate("/home");
@@ -28,6 +29,7 @@ export const useGithubAuth = () => {
             toast.error("Error logging in with GitHub!", {
                 position: "top-center",
                 autoClose: 3000,
+                closeButton: true
             });
         } finally {
             setLoadingGit(false);

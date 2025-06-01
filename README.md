@@ -17,8 +17,15 @@ Este projeto é uma página de login moderna e animada, desenvolvida com React.j
 - Email e senha (padrão)
 
 ### 🚧 Status do Projeto
+#### ⚠️ Em desenvolvimento — melhorias e correções em andamento.
+### ⚠️ Avisos Importantes:
+No momento, os métodos de login via **Microsoft** e **Facebook**, assim como as notificações via **React Toastify**, **não estão funcionando corretamente** devido a falhas nas APIs externas utilizadas. Estou trabalhando para resolver esses problemas e atualizar o projeto assim que possível.
 
-✅ Concluído — melhorias e novas funcionalidades podem ser adicionadas futuramente.
+### ⚠️ Atenção sobre uso de contas pessoais
+
+Este projeto está em desenvolvimento e ainda pode apresentar instabilidades. Para evitar problemas, **não utilize contas pessoais reais nos testes** — use apenas contas destinadas a teste, com dados fictícios, para garantir a segurança e evitar bloqueios ou perda de dados.
+
+Agradeço sua compreensão!
 
 ## ⚙️ Funcionalidades
 
@@ -33,6 +40,9 @@ Este projeto é uma página de login moderna e animada, desenvolvida com React.j
 #### 🔔 Feedback de ações com notificações toast (react-toastify)
 
 #### 🧼 Privacidade garantida: dados apagados ao sair da aplicação
+
+
+
 
 ## 🔥 Integração com Firebase (Autenticação)
 

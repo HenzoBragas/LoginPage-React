@@ -17,13 +17,14 @@ export const useGoogleAuth = () => {
       toast.success('Login successful', {
         position: "top-center",
         autoClose: 3000,
+        closeButton: true
       });
       navigate("/home"); 
     } catch (error) {
       console.error(error);
       toast.error('Error logging in with Google', {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 3000
       });
     } finally {
       setLoading(false);

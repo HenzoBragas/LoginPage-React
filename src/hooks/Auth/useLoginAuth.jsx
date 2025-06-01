@@ -21,14 +21,16 @@ export const useLoginAuth = () => {
             await login(formAuth.email, formAuth.password);
             toast.success(" Login successful", {
                 position: "top-center",
-                autoClose: 3000
+                autoClose:  2000,
+                closeButton: true
             });
 
             navigate("/home");
         } catch (error) {
             toast.error("Error logging in", {
                 position: "top-center",
-                autoClose: 3000
+                autoClose: 2000,
+                closeButton: true
             });
         }
 
