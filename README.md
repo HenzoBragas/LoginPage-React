@@ -16,6 +16,27 @@ Este projeto é uma página de login moderna e animada, desenvolvida com React.j
 
 - Email e senha (padrão)
 
+## 🖼️ Imagens da Aplicação
+### Tela de login
+![Tela de Login](./images/AcessarConta.png)
+### Tela de cadastro
+![Tela de Cadastro](./images/CriarConta.png)
+### Pedir troca da senha por email
+![trocarSenha](./images/email.png)
+### Trocar a senha 
+![esqueceu](./images/esqueceu.png)
+### Página apos login
+![home](./images/home.png)
+
+## 🚦 Rotas da Aplicação
+
+| Rota             | Componente/Tela  | Descrição                                   |
+|------------------|-----------------|---------------------------------------------|
+| `/`              | Login           | Tela principal de login                      |              |
+| `/reset-password`| ResetPassword   | Tela para recuperação de senha via email    |
+| `home`           | Home            | Tela após efetuar login 
+
+---
 ### 🚧 Status do Projeto
 #### ⚠️ Em desenvolvimento — melhorias e correções em andamento.
 ### ⚠️ Avisos Importantes:
