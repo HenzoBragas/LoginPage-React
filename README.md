@@ -32,7 +32,7 @@ Este projeto é uma página de login moderna e animada, desenvolvida com React.j
 
 | Rota             | Componente/Tela  | Descrição                                   |
 |------------------|-----------------|---------------------------------------------|
-| `/`              | Login           | Tela principal de login                      |              |
+| `/`              | Login e Criar conta          | Tela principal de login e criar conta                     |              |
 | `/reset-password`| ResetPassword   | Tela para recuperação de senha via email    |
 | `home`           | Home            | Tela após efetuar login 
 
