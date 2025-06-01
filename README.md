@@ -1,6 +1,6 @@
 # 🔐 Página de Login em React
 
-![PáginaWebLogin](./LoginPage.png)
+![PáginaWebLogin](./images/AcessarConta.png)
 
 ## 📌 Descrição
 
