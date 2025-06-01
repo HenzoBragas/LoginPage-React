@@ -4,7 +4,7 @@
 
 ## 📌 Descrição
 
-Este projeto é uma página de login moderna e animada, desenvolvida com React.js e baseada no estilo minimalista e suave inspirado no vídeo "ASMR Programming - Animated Login Page - No Talking" do canal ASMR Prog. O objetivo foi implementar uma interface agradável com diversos métodos de autenticação, incluindo:
+Este projeto é uma página de login moderna e animada, desenvolvida com React.js e baseada no estilo minimalista e suave inspirado no vídeo "**ASMR Programming - Animated Login Page - No Talking" do canal ASMR Prog**. O objetivo foi implementar uma interface agradável com diversos métodos de autenticação, incluindo:
 
 - Google
 
