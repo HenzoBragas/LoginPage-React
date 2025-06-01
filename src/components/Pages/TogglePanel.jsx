@@ -1,4 +1,3 @@
-import React from "react";
 
 const TogglePanel = ({ isActive, handleRegisterClick, handleLoginClick }) => (
   <div className="toggle-container">

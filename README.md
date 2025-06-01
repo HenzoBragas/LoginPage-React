@@ -1,41 +1,109 @@
-# Login Page in React
+# 🔐 Página de Login em React
+
 ![PáginaWebLogin](./LoginPage.png)
 
-## Descrição
-Este projeto foi desenvolvido com base no estilo minimalista e suave inspirado pelo vídeo **ASMR Programming - Animated Login Page - No Talking** do canal **ASMR Prog**. O objetivo foi implementar métodos de login, como: Google, GitHub, Facebook, Microsoft e método padrão (email e senha). A aplicação foi desenvolvida com **React Js**.
-### Status do Projeto
-**9Fase final de desenvolvimento** <br>
-- [ ] Correção de alguns bugs da aplicação Toast <br>
-- [x] Documentação 
+## 📌 Descrição
 
-## Funcionalidades
-A página foi desenvolvida como uma aplicação **SPA (Single Page Application)**.  
-As principais funcionalidades incluem os métodos de login com a utilização da API do **Google Firebase**. A página é composta por duas seções: **Login** e **Cadastro**.  
-Ao pressionar o botão **SIGN UP**, a seção de cadastro muda de forma animada, utilizando **keyframes** do CSS.  
-A aplicação apresenta a funcionalidade de **recuperar senha** com validação de email. A recuperação é feita através do envio de um link para a troca da senha, e após a troca, a aplicação retorna à página principal.  
-Antes da conclusão de qualquer método de login ou cadastro, o usuário é informado, por meio de um **toast**, se a ação foi um sucesso ou não. Para isso, utilizamos a biblioteca **react-toastify**.
+Este projeto é uma página de login moderna e animada, desenvolvida com React.js e baseada no estilo minimalista e suave inspirado no vídeo "ASMR Programming - Animated Login Page - No Talking" do canal ASMR Prog. O objetivo foi implementar uma interface agradável com diversos métodos de autenticação, incluindo:
 
-## Integração com a API Firebase (Autenticação)
-Este projeto utiliza a **API Firebase da Google**, que permite trabalhar sem um banco de dados local e sem a necessidade de criar funções para garantir a segurança dos dados inseridos.  
+- Google
 
-### Estrutura de arquivos
-Todos os métodos de login foram desenvolvidos em arquivos separados e implementados com **custom hooks** no componente principal.
+- GitHub
+
+- Facebook
+
+- Microsoft
+
+- Email e senha (padrão)
+
+### 🚧 Status do Projeto
+
+✅ Concluído — melhorias e novas funcionalidades podem ser adicionadas futuramente.
+
+## ⚙️ Funcionalidades
+
+#### 🔁 SPA (Single Page Application)
+
+#### 🔑 Login com provedores via Firebase Authentication
+
+#### 🆕 Tela de cadastro com animação usando CSS keyframes
+
+#### 🔐 Recuperação de senha via email
+
+#### 🔔 Feedback de ações com notificações toast (react-toastify)
+
+#### 🧼 Privacidade garantida: dados apagados ao sair da aplicação
+
+## 🔥 Integração com Firebase (Autenticação)
+
+O projeto utiliza a Firebase Authentication, que permite autenticação segura e escalável sem a necessidade de um banco de dados local.
+
+### 📁 Estrutura de Arquivos
+
+Todos os métodos de autenticação estão separados em arquivos específicos e organizados como custom hooks, facilitando a manutenção e reutilização do código.
+
+### 📌 Configuração Firebase
+
+```js
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
+  OAuthProvider,
+} from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "***************",
+  authDomain: "**************",
+  projectId: "loginpage-*********",
+  storageBucket: "****************",
+  messagingSenderId: "**************",
+  appId: "******************",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const auth = getAuth(firebaseApp);
+const microsoftProvider = new OAuthProvider("microsoft.com");
+
+export {
+  firebaseApp,
+  auth,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
+  getAuth,
+  microsoftProvider,
+};
+```
 
 ### Atenção ⚠️⚠️
+
 **Todos os dados são excluídos quando o usuário sai da aplicação para garantir a privacidade dos dados.**
 
 ### Passos para a Integração:
+
 #### Criar um Projeto no Console do Google Cloud:
+
 1. Acesse o **Google Cloud Console**.
 2. Crie um novo projeto ou selecione um projeto existente.
 3. Ative a **Google Identity Platform** e habilite a **API de autenticação** (por exemplo, Google).
 4. Crie as **credenciais OAuth 2.0** no painel de credenciais. Defina o tipo de aplicativo como **Web** e registre o domínio autorizado.
 
 #### Configurar o arquivo Firebase SDK:
+
 ```js
 // Importando as funções necessárias do Firebase SDK
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, OAuthProvider} from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
+  OAuthProvider,
+} from "firebase/auth";
 
 // Sua configuração do Firebase
 const firebaseConfig = {
@@ -44,7 +112,7 @@ const firebaseConfig = {
   projectId: "loginpage-*********",
   storageBucket: "****************",
   messagingSenderId: "**************",
-  appId: "******************"
+  appId: "******************",
 };
 
 // Inicializando o Firebase com a configuração
@@ -53,56 +121,111 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Obter a instância de autenticação
 const auth = getAuth(firebaseApp);
 // Microsoft
-const microsoftProvider = new OAuthProvider('microsoft.com');
+const microsoftProvider = new OAuthProvider("microsoft.com");
 
-export { firebaseApp, auth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, getAuth, microsoftProvider };
-```
-## Gerenciamento de Sessão:
-### Logout
-Após a autenticação, o usuário pode acessar os dados da conta do Google. Para garantir a privacidade, ao sair do site, todos os dados de sessão são apagados. Isso pode ser feito removendo o token de autenticação e sessão de cookies.
-```js
-const logout = () => {
-  // Limpar as credenciais
-  localStorage.removeItem('userToken');
-  sessionStorage.removeItem('userToken');
+export {
+  firebaseApp,
+  auth,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
+  getAuth,
+  microsoftProvider,
 };
 ```
-### Troca de  Senha
-O projeto implemente a funcionalidade de troca de senha, com método de envio de email para efetuar a troca da senha. A página da troca da senha totalmente personalizada com as cores da aplicação. Ao efetuar a troca da senha e validação a página recarrega para sessão principal. So é possivel trocar a senha pelo método email e senha.
+
+## 🔒 Gerenciamento de Sessão
+
+### Logout
+
+Remove todos os dados da sessão para garantir privacidade do usuário.
 
 ```js
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+const logout = async () => {
+  if (!user) {
+    toast.error("Nenhum usuário autenticado.");
+    return;
+  }
 
-const auth = getAuth();
+  setLoading(true);
+  try {
+    //Remove os dados do firebase e dada sessão
+    await deleteUser(user);
+    localStorage.clear();
+    sessionStorage.clear();
+
+    toast.success("Você saiu com sucesso!", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  } catch (error) {
+    console.error(error);
+
+    if (error.code === "auth/requires-recent-login") {
+      toast.error("Reautentique para excluir a conta.", {
+        position: "top-center",
+        autoClose: 4000,
+      });
+    } else {
+      toast.error("Erro ao sair. Tente novamente.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+```
+
+### Recuperação de Senha
+
+Apenas para usuários autenticados por email e senha. O usuário recebe um email com um link para redefinir a senha.
+
+```js
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
+
 const resetPassword = (email) => {
+  const auth = getAuth();
   sendPasswordResetEmail(auth, email)
     .then(() => {
-      // Avisar o usuário que um email foi enviado
-      toast.success('Email de recuperação enviado!', {
+      toast.success("Email de recuperação enviado!", {
         position: "top-center",
         autoClose: 3000,
         closeButton: true,
       });
     })
-    .catch((error) => {
+    .catch(() => {
       toast.error("Erro ao enviar email de recuperação!", {
         position: "top-center",
         autoClose: 3000,
         closeButton: true,
-      })
+      });
     });
 };
 ```
-### Acesse o Projeto Online 🚀🚀
-**Você pode acessar a versão online do projeto através deste link**
-### 👉 [Página de Login em React](https://loginpage-react.vercel.app/)
 
-## Tecnologias Utilizadas
-Para construção da aplicação utilizei os seguintes frameworks e biliotecas e APIs <br> 
-- #### React JS 
-- #### Toastify
-- #### Firebase API
-- #### Fortawesome
+### 🌐 Deploy
 
+🚀 Acesse a aplicação online:
 
+#### 👉 [Página de Login em React](https://loginpage-react.vercel.app/)
 
+## 🛠 Tecnologias Utilizadas
+
+⚛️ React.js
+
+🔥 Firebase Authentication
+
+🍞 React Toastify
+
+🎨 Fortawesome Icons
+
+## ⚠️ Observação Importante
+
+Todos os dados da sessão são automaticamente apagados ao sair da aplicação, garantindo total privacidade ao usuário.
