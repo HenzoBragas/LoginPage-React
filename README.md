@@ -226,6 +226,14 @@ const resetPassword = (email) => {
 
 #### 👉 [Página de Login em React](https://loginpage-react.vercel.app/)
 
+## 🛤 Roadmap
+
+- [ ] Consertar autenticação via Microsoft e Facebook
+- [ ] Melhorar tratamento de erros
+- [ ] Adicionar suporte a autenticação por LinkedIn
+- [ ] Melhorar UI/UX das telas de login e cadastro
+- [ ] Testes automatizados
+
 ## 🛠 Tecnologias Utilizadas
 
 ⚛️ React.js

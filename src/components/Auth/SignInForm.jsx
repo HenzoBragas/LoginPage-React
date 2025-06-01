@@ -78,7 +78,7 @@ const SignInForm = () => {
               {loadingMic ? "..." : <i className="fa-brands fa-microsoft"></i>}
             </button>
           </div>
-          <span>or use your email password</span>
+          <span>ou use sua senha de e-mail</span>
           <input
             type="email"
             placeholder="Email"
@@ -110,9 +110,9 @@ const SignInForm = () => {
             onClick={() => setIsPopupOpen(true)}
             type="button"
           >
-            Forgot Your Password?
+            Esqueceu sua senha?
           </button>
-          {loadingLogin ? ".... " : <button type="submit" className="btn-submit">Sign In</button>}
+          {loadingLogin ? ".... " : <button type="submit" className="btn-submit">Login</button>}
         </form>
       </div>
     </>

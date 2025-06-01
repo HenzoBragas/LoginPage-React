@@ -19,7 +19,7 @@ export const useLoginAuth = () => {
 
         try {
             await login(formAuth.email, formAuth.password);
-            toast.success(" Login successful", {
+            toast.success("Login efetuado com sucesso", {
                 position: "top-center",
                 autoClose:  2000,
                 closeButton: true
@@ -27,7 +27,7 @@ export const useLoginAuth = () => {
 
             navigate("/home");
         } catch (error) {
-            toast.error("Error logging in", {
+            toast.error("Erro ao efetuar login com email", {
                 position: "top-center",
                 autoClose: 2000,
                 closeButton: true

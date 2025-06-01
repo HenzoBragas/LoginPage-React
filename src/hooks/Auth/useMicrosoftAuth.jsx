@@ -10,14 +10,14 @@ export const useMicrosoftAuth = () => {
 
         try {
             await signInWithPopup(auth, microsoftProvider);
-            toast.success(`Login sucessful`, {
+            toast.success(`Login efetuado com sucesso`, {
                 position: "top-center",
                 autoClose: 2000,
                 closeButton: true
             });
         } catch (error) {
             console.error(error);
-            toast.error(`Error logging in with Microsoft!`, {
+            toast.error(`Erro ao efetuar login com Microsoft!`, {
                 position: "top-center",
                 autoClose: 2000,
                 closeButton: true
@@ -27,25 +27,8 @@ export const useMicrosoftAuth = () => {
         }
     };
 
-    const logoutMic = async () => {
-        try {
-            await auth.signOut();
-            toast.info("You have successfully exited", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-        } catch (error) {
-            console.log(error);
-            toast.error("Error logging out. Please try again.", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-        }
-    };
-
     return {
         loadingMic,
         loginWithMicrosoft,
-        logoutMic,
     }
 }

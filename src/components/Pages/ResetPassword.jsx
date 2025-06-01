@@ -59,7 +59,7 @@ function ResetPassword() {
             <div className="modal">
                 <div className="container-pop">
                     <div className="container-title">
-                        <h2>Change password</h2>
+                        <h2>Esqueceu a senha</h2>
                     </div>
                     <div className="form-pop">
                         <form onSubmit={handleResetPassword}>
@@ -67,7 +67,7 @@ function ResetPassword() {
                                 <input
                                     type={isPasswordVisible ? "text" : "password"}
                                     name="password"
-                                    placeholder="New password"
+                                    placeholder="Nova senha"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
@@ -86,7 +86,7 @@ function ResetPassword() {
                                 <input
                                     type={isPasswordVisible ? "text" : "password"}
                                     name="confirmPassword"
-                                    placeholder="Confirm password"
+                                    placeholder="Confirmar a nova senha"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     required

@@ -21,7 +21,7 @@ export const useCreateAuth = () => {
 
         try {
             await register(formAuth.email, formAuth.password);
-            toast.success("Account created successfully!",
+            toast.success("Conta cria com sucesso!",
                 {
                     position: "top-center",
                     autoClose: 2000
@@ -31,7 +31,7 @@ export const useCreateAuth = () => {
 
             98
         } catch (error) {
-            toast.error("Error creating account!", {
+            toast.error("Erro ao criar a conta!", {
                 position: "top-center",
                 autoClose: 3000
             });

@@ -14,7 +14,7 @@ export const useGoogleAuth = () => {
     setLoading(true);
     try {
       await signInWithPopup(getAuth(firebaseApp), provider); 
-      toast.success('Login successful', {
+      toast.success('Login efetuado com sucesso', {
         position: "top-center",
         autoClose: 3000,
         closeButton: true
@@ -22,35 +22,9 @@ export const useGoogleAuth = () => {
       navigate("/home"); 
     } catch (error) {
       console.error(error);
-      toast.error('Error logging in with Google', {
+      toast.error('Erro ao realizar login com Google', {
         position: "top-center",
         autoClose: 3000
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const logout = async () => {
-    setLoading(true);
-    try {
-
-      await signOut(getAuth(firebaseApp));
-
-      localStorage.clear();
-      sessionStorage.clear();
-
-      toast.info('You have successfully logged out', {
-        position: "top-center",
-        autoClose: 3000,
-      });
-
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      toast.error('Error logging out. Please try again.', {
-        position: "top-center",
-        autoClose: 3000,
       });
     } finally {
       setLoading(false);
@@ -60,6 +34,5 @@ export const useGoogleAuth = () => {
   return {
     loading,
     loginWithGoogle,
-    logout,
   };
 };

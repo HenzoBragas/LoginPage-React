@@ -18,14 +18,14 @@ export const useFacebookAuth = () => {
 
         try {
             await signInWithPopup(auth, provider);
-            toast.success(`Login sucessful `, {
+            toast.success(`Login efetuado com sucesso com Facebook `, {
                 position: "top-center",
                 autoClose: 2000,
                 closeButton: true
             });
             navigate("/home");
         } catch (error) {
-            toast.error("Error loggin in with Facebook", {
+            toast.error("Erro ao efetuar login com Facebook", {
                 position: "top-center",
                 autoClose: 3000,
                 closeButton: true
@@ -36,26 +36,7 @@ export const useFacebookAuth = () => {
         } 
         
     }
-
-    const logoutFace = async () => {
-        setLoadingFace(true);
-        try {
-            toast.info("You have successfully exited", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-            navigate("/")
-        } catch (error) {
-            console.log(error);
-            toast.error("Error logging out. Please try again.", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-        } finally {
-            setLoadingFace(false);
-        }
-    }
     return {
-        userFace, loadingFace, loginWithFacebook, logoutFace
+        userFace, loadingFace, loginWithFacebook
     };
 };

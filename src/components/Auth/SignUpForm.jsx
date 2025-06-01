@@ -23,7 +23,7 @@ const SignUpForm = () => {
       <ToastContainer />
       <div className="form-container sign-up">
         <form onSubmit={(e) => handleSubmit(e)}>
-          <h1 className="CreateAccount">Create Account</h1>
+          <h1 className="CreateAccount">Crie uma conta</h1>
           <div className="social-icons">
             <button
               className="socialAuth"
@@ -66,10 +66,10 @@ const SignUpForm = () => {
               {loadingMic ? '...' : <i className="fa-brands fa-microsoft"></i>}
             </button>
           </div>
-          <span>or use your email for registration</span>
+          <span>ou use seu e-mail para registro</span>
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Nome"
             name="name"
             value={formAuth.name || ''}
             onChange={handleChange}
@@ -86,7 +86,7 @@ const SignUpForm = () => {
           <div className="inputPassword">
             <input
               type={isPasswordVisible ? 'text' : 'password'}
-              placeholder="Password"
+              placeholder="Senha"
               name="password"
               value={formAuth.password || ''}
               onChange={handleChange}
@@ -106,7 +106,7 @@ const SignUpForm = () => {
               )}
             </button>
           </div>
-          {loadingCreate ? "..." : <button type="submit" className="btn-submit"> Sign Up
+          {loadingCreate ? "..." : <button type="submit" className="btn-submit">Cadastre-se
           </button>}
 
         </form>

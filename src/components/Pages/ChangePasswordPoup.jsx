@@ -20,7 +20,7 @@ const ChangePasswordPopup = ({ isOpen, onClose }) => {
 
 
         if (!formData.email) {
-            toast.error("Please enter your email", {
+            toast.error("Por favor coloque seu email", {
                 position: "top-center",
                 autoClose: 3000,
             })
@@ -42,7 +42,7 @@ const ChangePasswordPopup = ({ isOpen, onClose }) => {
             <div className="modal">
                 <div className="container-pop">
                     <div className="container-title">
-                        <h2>Change password</h2>
+                        <h2>Esqueceu sua senha</h2>
                     </div>
                     <div className="form-pop">
                         <form onSubmit={handleSubmit}>
@@ -56,8 +56,8 @@ const ChangePasswordPopup = ({ isOpen, onClose }) => {
                                 />
                             </div>
                             <div className="btn-password">
-                                <button type="button" className="btn-pop" onClick={onClose} disabled={loading}>Cancel</button>
-                                <button type="submit" className="btn-pop btn-next" disabled={loading}>Confirm </button>
+                                <button type="button" className="btn-pop" onClick={onClose} disabled={loading}>Cancelar</button>
+                                <button type="submit" className="btn-pop btn-next" disabled={loading}>Confirmar </button>
                             </div>
                         </form>
                     </div>

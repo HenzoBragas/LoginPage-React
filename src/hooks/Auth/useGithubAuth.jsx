@@ -16,7 +16,7 @@ export const useGithubAuth = () => {
         try {
            await signInWithPopup(auth, provider);
             setUserGit(user);
-            toast.success(`Login sucessful `, {
+            toast.success(`Login efetuado com sucesso`, {
                 position: "top-center",
                 autoClose: 3000,
                 closeButton: true
@@ -26,7 +26,7 @@ export const useGithubAuth = () => {
 
         } catch (error) {
             console.log(error);
-            toast.error("Error logging in with GitHub!", {
+            toast.error("Erro ao efetuar o login com Github!", {
                 position: "top-center",
                 autoClose: 3000,
                 closeButton: true
@@ -35,28 +35,9 @@ export const useGithubAuth = () => {
             setLoadingGit(false);
         }
     };
-
-    const logout = async () => {
-        try {
-            await auth.signOut();
-            setUserGit(null);
-            toast.info("You have successfully exited", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-        } catch (error) {
-            console.log(error);
-            toast.error("Error logging out. Please try again.", {
-                position: "top-center",
-                autoClose: 3000,
-            });
-        }
-    };
-
     return {
         userGit,
         loadingGit,
         loginWithGithub,
-        logout,
     }
 }
